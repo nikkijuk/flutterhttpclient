@@ -32,6 +32,38 @@ State and events of state management are immutable and they are generated.
 Rest api is defined using annotations.
 Annotations help to generate code for api.
 
+## data sources
+
+Ready restful api is used
+
+https://jsonplaceholder.typicode.com/
+
+https://github.com/typicode/jsonplaceholder
+
+Documentation of API is at 
+
+https://jsonplaceholder.typicode.com/guide/
+
+## endpoints
+
+endpoints
+
+- /posts
+- /posts/<id>
+
+## entities
+
+- post
+
+```json
+{
+    id: 1,
+    title: 'foo',
+    body: '...',
+    userId: 1
+}
+```
+
 ## tech
 
 - dart
