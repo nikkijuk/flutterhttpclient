@@ -1,13 +1,44 @@
 # flutterhttpclient
 simple http test app
 
+## concept
+
+App has currently single domain, blogging.
+If needed additional domains could be used in single app.
+
+App is composed from features.
+Posts is a feature, which uses blogging domain data types and repositories.
+
+Blogging domain has different data types.
+Data types are concrete immutable classes.
+
+Domain data types may have their own repositories.
+Domain contains interfaces of repositories.
+
+Repositories are implemented on their own packages.
+Each repository implements single domain interface.
+
+Services access API's of external systems.
+Repositories use api's and convert Api's data types to domain model when necessary.
+
+## principles
+
+Immutable data is used as much as possible.
+Code generation is used to generate data types.
+
+Features contain pages, views and state management.
+State and events of state management are immutable and they are generated.
+
+Rest api is defined using annotations.
+Annotations help to generate code for api.
+
 ## tech
 
 - dart
 - flutter
+- freezed
 - bloc
 - chopper
-- freezed
 
 ## tools
 
