@@ -32,7 +32,7 @@ class BlogPostsView extends StatelessWidget {
             LoadingPosts() => const Center(
               child: CircularProgressIndicator(),
             ),
-            LoadedPosts() => const BlogPostList (),
+            LoadedPosts() => const BlogPostList(),
           },
         );
       },

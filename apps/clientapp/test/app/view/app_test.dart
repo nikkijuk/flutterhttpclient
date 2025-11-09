@@ -11,8 +11,7 @@ import 'app_test.mocks.dart';
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-
-      final repository =  MockBlogPostRepository();
+      final repository = MockBlogPostRepository();
       GetIt.instance.registerSingleton<BlogPostRepository>(repository);
 
       await tester.pumpWidget(App());

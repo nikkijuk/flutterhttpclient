@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts/src/bloc/blog_post_bloc.dart';
-import 'package:posts/src/bloc/blog_post_state.dart' show BlogPostState, LoadedPosts, LoadingPosts;
+import 'package:posts/src/bloc/blog_post_state.dart'
+    show BlogPostState, LoadedPosts, LoadingPosts;
 import 'package:posts/src/widget/blog_post_card.dart';
 
 /// List of blog posts.
 class BlogPostList extends StatelessWidget {
-
   /// Constructor for BlogPostList.
   const BlogPostList({super.key});
 

@@ -81,6 +81,12 @@ endpoints
 - chopper_generator
 - build_runner
 
+## testing
+
+- flutter_test
+- mocktail
+- mockito
+
 ## tools
 
 - vgv cli
