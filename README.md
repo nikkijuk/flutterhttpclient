@@ -207,6 +207,8 @@ very_good create dart_package blog_domain --description "blog domain"
 
 ## model generation
 
+- packages/domain/blog_domain/lib/src/model/post.dart
+
 - model is part of domain
 - model is immutable data class
 - model is generated using freezed package

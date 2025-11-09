@@ -7,6 +7,10 @@ resolution: workspace
 environment:
   sdk: ^3.9.0
 
+dependencies:
+  blog_domain: ^0.1.0
+  post_api_service: ^0.1.0
+
 dev_dependencies:
   mocktail: ^1.0.4
   test: ^1.22.0

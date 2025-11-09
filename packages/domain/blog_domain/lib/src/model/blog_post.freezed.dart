@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'post.dart';
+part of 'blog_post.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ part of 'post.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Post {
+mixin _$BlogPost {
 
  int get id; int get userId; String get title; String get body;
-/// Create a copy of Post
+/// Create a copy of BlogPost
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$PostCopyWith<Post> get copyWith => _$PostCopyWithImpl<Post>(this as Post, _$identity);
+$BlogPostCopyWith<BlogPost> get copyWith => _$BlogPostCopyWithImpl<BlogPost>(this as BlogPost, _$identity);
 
-  /// Serializes this Post to a JSON map.
+  /// Serializes this BlogPost to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Post&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BlogPost&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,15 +37,15 @@ int get hashCode => Object.hash(runtimeType,id,userId,title,body);
 
 @override
 String toString() {
-  return 'Post(id: $id, userId: $userId, title: $title, body: $body)';
+  return 'BlogPost(id: $id, userId: $userId, title: $title, body: $body)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $PostCopyWith<$Res>  {
-  factory $PostCopyWith(Post value, $Res Function(Post) _then) = _$PostCopyWithImpl;
+abstract mixin class $BlogPostCopyWith<$Res>  {
+  factory $BlogPostCopyWith(BlogPost value, $Res Function(BlogPost) _then) = _$BlogPostCopyWithImpl;
 @useResult
 $Res call({
  int id, int userId, String title, String body
@@ -56,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$PostCopyWithImpl<$Res>
-    implements $PostCopyWith<$Res> {
-  _$PostCopyWithImpl(this._self, this._then);
+class _$BlogPostCopyWithImpl<$Res>
+    implements $BlogPostCopyWith<$Res> {
+  _$BlogPostCopyWithImpl(this._self, this._then);
 
-  final Post _self;
-  final $Res Function(Post) _then;
+  final BlogPost _self;
+  final $Res Function(BlogPost) _then;
 
-/// Create a copy of Post
+/// Create a copy of BlogPost
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? body = null,}) {
   return _then(_self.copyWith(
@@ -78,8 +78,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [Post].
-extension PostPatterns on Post {
+/// Adds pattern-matching-related methods to [BlogPost].
+extension BlogPostPatterns on BlogPost {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -92,10 +92,10 @@ extension PostPatterns on Post {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Post value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BlogPost value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Post() when $default != null:
+case _BlogPost() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -114,10 +114,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Post value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BlogPost value)  $default,){
 final _that = this;
 switch (_that) {
-case _Post():
+case _BlogPost():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -135,10 +135,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Post value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BlogPost value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Post() when $default != null:
+case _BlogPost() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -158,7 +158,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int userId,  String title,  String body)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Post() when $default != null:
+case _BlogPost() when $default != null:
 return $default(_that.id,_that.userId,_that.title,_that.body);case _:
   return orElse();
 
@@ -179,7 +179,7 @@ return $default(_that.id,_that.userId,_that.title,_that.body);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int userId,  String title,  String body)  $default,) {final _that = this;
 switch (_that) {
-case _Post():
+case _BlogPost():
 return $default(_that.id,_that.userId,_that.title,_that.body);case _:
   throw StateError('Unexpected subclass');
 
@@ -199,7 +199,7 @@ return $default(_that.id,_that.userId,_that.title,_that.body);case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int userId,  String title,  String body)?  $default,) {final _that = this;
 switch (_that) {
-case _Post() when $default != null:
+case _BlogPost() when $default != null:
 return $default(_that.id,_that.userId,_that.title,_that.body);case _:
   return null;
 
@@ -211,29 +211,29 @@ return $default(_that.id,_that.userId,_that.title,_that.body);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Post implements Post {
-  const _Post({required this.id, required this.userId, required this.title, required this.body});
-  factory _Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
+class _BlogPost implements BlogPost {
+  const _BlogPost({required this.id, required this.userId, required this.title, required this.body});
+  factory _BlogPost.fromJson(Map<String, dynamic> json) => _$BlogPostFromJson(json);
 
 @override final  int id;
 @override final  int userId;
 @override final  String title;
 @override final  String body;
 
-/// Create a copy of Post
+/// Create a copy of BlogPost
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$PostCopyWith<_Post> get copyWith => __$PostCopyWithImpl<_Post>(this, _$identity);
+_$BlogPostCopyWith<_BlogPost> get copyWith => __$BlogPostCopyWithImpl<_BlogPost>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$PostToJson(this, );
+  return _$BlogPostToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Post&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BlogPost&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -242,15 +242,15 @@ int get hashCode => Object.hash(runtimeType,id,userId,title,body);
 
 @override
 String toString() {
-  return 'Post(id: $id, userId: $userId, title: $title, body: $body)';
+  return 'BlogPost(id: $id, userId: $userId, title: $title, body: $body)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
-  factory _$PostCopyWith(_Post value, $Res Function(_Post) _then) = __$PostCopyWithImpl;
+abstract mixin class _$BlogPostCopyWith<$Res> implements $BlogPostCopyWith<$Res> {
+  factory _$BlogPostCopyWith(_BlogPost value, $Res Function(_BlogPost) _then) = __$BlogPostCopyWithImpl;
 @override @useResult
 $Res call({
  int id, int userId, String title, String body
@@ -261,17 +261,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$PostCopyWithImpl<$Res>
-    implements _$PostCopyWith<$Res> {
-  __$PostCopyWithImpl(this._self, this._then);
+class __$BlogPostCopyWithImpl<$Res>
+    implements _$BlogPostCopyWith<$Res> {
+  __$BlogPostCopyWithImpl(this._self, this._then);
 
-  final _Post _self;
-  final $Res Function(_Post) _then;
+  final _BlogPost _self;
+  final $Res Function(_BlogPost) _then;
 
-/// Create a copy of Post
+/// Create a copy of BlogPost
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? body = null,}) {
-  return _then(_Post(
+  return _then(_BlogPost(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
