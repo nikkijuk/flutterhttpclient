@@ -219,6 +219,13 @@ very_good create dart_package utility --description "utility"
 
 ## modules
 
+Note that features only depend on domain.
+
+Repositories are used to implement domain repositories.
+
+Repositories depend on services to access api's.
+
+Utility is a package for common code that can be used by any package.
 
 ```mermaid
 graph TD
@@ -242,6 +249,12 @@ graph TD
   post_http_repository --> blog_domain
   post_http_repository --> post_api_service
   posts --> blog_domain
+```
+
+diagram created with command
+
+```bash
+melos list --mermaid
 ```
 
 ## model generation
