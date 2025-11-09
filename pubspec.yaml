@@ -310,6 +310,15 @@ melos:
         dirExists: android
       description: generate dependency graph with melos and convert to svg
 
+    graph:melos:mermaid:
+      run: melos list --mermaid > dependency_graph.mermaid
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: android
+      description: generate dependency graph with melos and convert to svg
+
+
     # remember to install lakos and graphviz
     # dart pub global activate lakos
     graph:lakos:

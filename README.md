@@ -217,6 +217,33 @@ very_good create dart_package blog_domain --description "blog domain"
 very_good create dart_package utility --description "utility" 
 ```
 
+## modules
+
+
+```mermaid
+graph TD
+  blog_domain["blog_domain"]
+  style blog_domain stroke:#3696f6
+  clientapp["clientapp"]
+  style clientapp stroke:#e94cce
+  post_api_service["post_api_service"]
+  style post_api_service stroke:#8d4cb0
+  post_http_repository["post_http_repository"]
+  style post_http_repository stroke:#431166
+  posts["posts"]
+  style posts stroke:#c7f81a
+  utility["utility"]
+  style utility stroke:#736b17
+  clientapp --> blog_domain
+  clientapp --> post_api_service
+  clientapp --> post_http_repository
+  clientapp --> posts
+  post_api_service --> blog_domain
+  post_http_repository --> blog_domain
+  post_http_repository --> post_api_service
+  posts --> blog_domain
+```
+
 ## model generation
 
 - packages/domain/blog_domain/lib/src/model/post.dart
