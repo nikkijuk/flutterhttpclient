@@ -1,5 +1,5 @@
-import 'package:clientapp/app/app.dart';
 import 'package:blog_domain/blog_domain.dart';
+import 'package:clientapp/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
@@ -14,7 +14,7 @@ void main() {
       final repository = MockBlogPostRepository();
       GetIt.instance.registerSingleton<BlogPostRepository>(repository);
 
-      await tester.pumpWidget(App());
+      await tester.pumpWidget(const App());
       expect(find.byType(BlogPostsPage), findsOneWidget);
     });
   });
