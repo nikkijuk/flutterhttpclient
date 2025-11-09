@@ -84,6 +84,24 @@ endpoints
 - mermaid
 - plantuml
 
+## editors
+
+- android studio
+- mermaidflow app
+
+## plugins
+
+- github copilot
+- compose (experimental) markdown plugin
+
+## repository
+
+- github.com (public)
+- monorepo
+- dart workspace
+- n apps times m packages possible
+- melos as task runner
+
 ## structure
 
 creating empty directories

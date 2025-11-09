@@ -1,0 +1,412 @@
+name: _
+description: monorepo root
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.9.0
+
+# glob support comes with dart 3.11.x
+workspace:
+  - apps/clientapp
+  - packages/domain/blog_domain
+  - packages/features/posts
+  - packages/repositories/post_http_repository
+  - packages/services/post_api_service
+
+dev_dependencies:
+  melos: ^7.3.0
+  very_good_analysis: ^10.0.0
+
+flutter:
+  uses-material-design: true
+
+melos:
+  scripts:
+
+    # note about melos commands
+
+    # melos run <command> runs the command defined in melos.yaml
+    # melos exec <command> runs the command in all packages
+    # melos exec -c 1 -- <command> runs the command in all packages with concurrency 1
+
+    # example of melos commands
+
+    # melos analyze and melos run analyze are different
+    # melos analyze runs internal implementation of melos analyze
+    # melos run analyze runs the script defined in melos.yaml
+    # melos exec -- flutter analyze runs flutter analyze on all packages
+    # same applies to other melos commands, ex. format and clean
+
+    fix:format:
+      run: dart fix --code=require_trailing_commas
+      description: Fix formatting issues in the code.
+
+    fix:select:
+      run: dart fix --apply
+      description: Fix selected package.
+      exec:
+        concurrency: 1
+      packageFilters:
+        fileExists: pubspec.yaml
+
+    fix:
+      run: melos run fix:select --no-select
+      description: Fix packages.
+
+    fix:check:select:
+      run: dart fix --dry-run
+      description: Check if fixes exist for selected package.
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    fix:check:
+      run: melos run fix:check:select --no-select
+      description: Check if fixes exist for packages.
+
+    clean:select:
+      run: flutter clean
+      description: Clean selected package.
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    # note: melos clean does not run this script, but melos run clean does
+    clean:
+      run: melos run clean:select --no-select
+      description: Clean all packages.
+
+    get:select:
+      run: flutter pub get
+      description: Get dependencies for selected package.
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    get:
+      run: melos run get:select --no-select
+      description: Get all dependencies for all packages.
+
+    # upgrade dependencies for selected packages, lock file is updated
+    # see https://dart.dev/tools/pub/cmd/pub-upgrade
+    upgrade:select:
+      run: flutter pub upgrade
+      description: Upgrade dependencies for selected package.
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        fileExists: pubspec.yaml
+
+    # upgrade dependencies for all packages, lock file is updated
+    upgrade:
+      run: melos run upgrade:select --no-select
+      description: Upgrade all dependencies for all packages.
+
+    # upgrade major versions of dependencies for selected packages, lock file is updated
+    # see https://dart.dev/tools/pub/cmd/pub-upgrade
+    upgrade:major:select:
+      run: flutter pub upgrade --major-versions
+      description: Upgrade dependencies for selected package.
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        fileExists: pubspec.yaml
+
+    # upgrade major versions of dependencies for all packages, lock file is updated
+    upgrade:major:
+      run: melos run upgrade:major:select --no-select
+      description: Upgrade all dependencies for all packages.
+
+    # dry run for upgrade major versions of dependencies for selected packages, lock file is updated
+    # see https://dart.dev/tools/pub/cmd/pub-upgrade
+    upgrade:major:dry:select:
+      run: flutter pub upgrade --major-versions --dry-run
+      description: Upgrade dependencies for selected package.
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        fileExists: pubspec.yaml
+
+    # dry run for upgrade major versions of dependencies for all packages, lock file is updated
+    upgrade:major:dry:
+      run: melos run upgrade:major:dry:select --no-select
+      description: Upgrade all dependencies for all packages.
+
+    # configuration is in apps l10n.yaml
+    intl:app:select:
+      run: flutter gen-l10n
+      description: Generate intl files for selected app that has l10n.yaml
+      exec:
+        concurrency: 1
+      packageFilters:
+        flutter: true
+        dirExists: lib/l10n
+
+    # configuration is in packages l10n.yaml
+    intl:select:
+      run: flutter gen-l10n
+      description: Generate intl files for selected package that has l10n.yaml
+      exec:
+        concurrency: 1
+      packageFilters:
+        flutter: true
+        dirExists: lib/src/l10n
+
+    intl:
+      run: melos run intl:select --no-select && melos run intl:app:select --no-select
+      description: Run all intl generations in this project.
+
+    format:select:
+      run: dart format lib test
+      description: formats dart code in single package
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    # formats all dart code
+    # note: melos format does not run this script, but melos run format does
+    format:
+      run: melos run format:select --no-select
+      description: Format code in all packages.
+
+    format:check:select:
+      run: dart format lib test --output=none --set-exit-if-changed
+      description: checks if dart code is following format for selected package - fails if not
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    format:check:
+      run: melos run format:check:select --no-select
+      description: checks if dart code is following format for all packages - fails if not
+
+    format:check:debug:select:
+      run: dart format lib test --output=show --set-exit-if-changed
+      description: checks if dart code is following format for selected package - fails if not
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    format:debug:check:
+      run: melos run format:check:select --no-select
+      description: checks if dart code is following format for all packages - fails if not
+
+    analyze:select:
+      run: flutter analyze --congratulate
+      description: |
+        runs analyze on selected package.
+         - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+      exec:
+        concurrency: 1
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    # runs analyze on every package
+    # note: https://melos.invertase.dev/commands/analyze does the same
+    # "melos run analyze" runs this script
+    # "melos analyze" runs internal implementation of melos analyze
+    # "melos exec -- flutter analyze" runs flutter analyze on all packages
+    analyze:
+      run: melos run analyze:select --no-select
+      description: Run analyze in all packages.
+
+    analyze:verbose:select:
+      run: flutter analyze --congratulate --verbose
+      description: |
+        Run the built in linter for selected package.
+      exec:
+        concurrency: 1
+        failFast: true
+      packageFilters:
+        file-exists: pubspec.yaml
+
+    analyze:verbose:
+      run: melos analyze:verbose:select --no-select
+      description: Run the built in linter for all packages.
+
+    # dependency_validator is a tool that checks if dependencies are pinned,
+    # underpromoted, or overpromoted
+    # remember to install dependency_validator
+    # dart pub global activate dependency_validator
+    dependency:check:
+      run: dependency_validator
+      exec:
+        concurrency: 1
+
+    dartdoc:select:
+      run: dart doc .
+      description: Generate docs on single package that has dartdoc as dependency
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn: dartdoc
+
+    # dart pub global activate dartdoc
+    dartdoc:
+      run: melos exec -c 1 --depends-on="dartdoc" --order-dependents -- "dart doc ."
+      description: Generate docs on all packages that have dartdoc as dependency
+
+    generate:select:
+      run: dart run build_runner build --delete-conflicting-outputs
+      description: Generate code on single package that has build runner as dependency
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn: build_runner
+
+    generate:
+      run: melos exec -c 1 --depends-on="build_runner" --order-dependents -- "dart run build_runner build --delete-conflicting-outputs"
+      description: Generate code on all packages that have build runner as dependency
+
+    test:select:
+      run: flutter test --no-pub --reporter compact
+      description: runs all tests on selected package
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: test
+
+    test:
+      run: melos run test:select --no-select
+      description: runs all tests on all packages
+
+    test:ff:select:
+      run: flutter test
+      exec:
+        concurrency: 6
+        failFast: true
+      packageFilters:
+        dirExists: test
+      description: Runs all tests in selected package until first failure
+
+    test:ff:
+      run: melos test:ff:select --no-select
+      description: Runs all tests in all packages until first failure
+
+    graph:melos:qviz:
+      run: melos list --gviz > dependency_graph.gviz
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: android
+      description: Generate dependency graph with melos
+
+    graph:melos:svg:
+      run: melos list --gviz | dot -Tsvg > dependency_graph.svg
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: android
+      description: generate dependency graph with melos and convert to svg
+
+    # remember to install lakos and graphviz
+    # dart pub global activate lakos
+    graph:lakos:
+      run: |
+        lakos -m -i "{lib/l10n/**,lib/src/l10n/**,test/**,**.g.dart,**.freezed.dart}" . | dot -Tsvg -o lakos_graph.svg
+        && lakos -m -i "{lib/l10n/**,lib/src/l10n/**,test/**,**.g.dart,**.freezed.dart}" . | dot -Tpng -o lakos_graph.png
+      exec:
+        concurrency: 1
+      description: generate dependency graph with melos and convert to svg & png
+
+    # remember to install lakos and graphviz
+    # dart pub global activate lakos
+    graph:lakos:svg:
+      run: lakos -m -i "{lib/l10n/**,lib/src/l10n/**,test/**,**.g.dart,**.freezed.dart}" . | dot -Tsvg -o lakos_graph.svg
+      exec:
+        concurrency: 1
+      description: generate dependency graph with melos and convert to svg
+
+    # remember to install lakos and graphviz
+    # dart pub global activate lakos
+    graph:lakos:png:
+      run: lakos -m -i "{lib/l10n/**,lib/src/l10n/**,test/**,**.g.dart,**.freezed.dart}" . | dot -Tpng -o lakos_graph.png
+      exec:
+        concurrency: 1
+      description: generate dependency graph with melos and convert to svg
+
+    # remember to install pubviz
+    # dart pub global activate pubviz
+    # only direct (-d) dependencies
+    # only production (-p) dependencies
+    # format (-f) as dot (or html)
+    # ignore packages (-i) ??
+    graph:pubviz:png:
+      run: pubviz print -d -p -f dot . | dot -Tpng -o pubviz_graph.png
+      exec:
+        concurrency: 1
+      description: generate dependency graph with pubviz and convert to png
+
+    # remember to install pubviz
+    # dart pub global activate pubviz
+    # only direct (-d) dependencies
+    # only production (-p) dependencies
+    # format (-f) as dot (or html)
+    # ignore packages (-i) ??
+    graph:pubviz:svg:
+      run: pubviz print -d -p -f dot . | dot -Tsvg -o pubviz_graph.svg
+      exec:
+        concurrency: 1
+      description: generate dependency graph with pubviz and convert to png
+
+    # remember to install pubviz
+    # dart pub global activate pubviz
+    # only direct (-d) dependencies
+    # only production (-p) dependencies
+    # format (-f) as dot (or html)
+    # ignore packages (-i) ??
+    graph:pubviz:html:
+      run: pubviz print -d -p -f html . > pubviz_graph.html
+      exec:
+        concurrency: 1
+      description: generate dependency graph with pubviz and convert to png
+
+    # scan single package for vulnerabilities
+    # requires installed osv-scanner
+    osv:scan:select:
+      run: osv-scanner scan --lockfile=pubspec.lock
+      exec:
+        concurrency: 1
+      description: scan for vulnerabilities
+      packageFilters:
+        fileExists: pubspec.lock
+
+    # scan all packages for vulnerabilities
+    osv:scan:
+      run: melos osv:scan:select --no-select
+      description: Runs osv-scanner for all packages.
+
+
+    # NOTE: Should run only once, without package filter, but melos does not support this
+    # all packages would need to be selected for this to work
+    # generate documentation for modules in pubspec.yaml files
+    # only runs if doc/generated directory exists
+    doc:dependency:graphviz:
+      run: melos list --gviz > ./doc/generated/melos_dependency_graph.qviz
+      description: |
+        generate documentation for dependencies in pubspec.yaml files
+      packageFilters:
+        dirExists:
+          - doc/generated
+
+    # NOTE: Should run only once, without package filter, but melos does not support this
+    # NOTE: does not work with windows
+    # generate documentation for modules in pubspec.yaml files
+    # only runs if doc/generated directory exists
+    doc:dependency:svg:
+      run: melos list --gviz | dot -Tsvg > ./doc/generated/melos_dependency_graph.svg
+      description: |
+        generate documentation for dependencies in pubspec.yaml files
+      packageFilters:
+        dirExists:
+          - doc/generated
