@@ -71,6 +71,7 @@ endpoints
 - freezed
 - bloc
 - chopper
+- get_it
 
 ## tools
 

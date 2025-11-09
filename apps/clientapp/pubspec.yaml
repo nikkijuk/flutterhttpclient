@@ -10,12 +10,17 @@ environment:
 
 dependencies:
   bloc: ^9.0.1
+  blog_domain: ^0.1.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
+  get_it: ^9.0.5
   intl: ^0.20.2
+  post_api_service: ^0.1.0+1
+  post_http_repository: ^0.1.0+1
+  posts: ^0.1.0+1
 
 dev_dependencies:
   bloc_test: ^10.0.0

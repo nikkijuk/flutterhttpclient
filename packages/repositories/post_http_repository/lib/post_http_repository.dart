@@ -1,4 +1,4 @@
 /// post http repository
 library;
 
-export 'src/post_http_repository.dart';
+export 'src/repository/blog_post_http_repository.dart';
