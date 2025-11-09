@@ -6,7 +6,6 @@ part 'blog_post_event.freezed.dart';
 @freezed
 /// Events for BlogPostBloc.
 abstract class BlogPostEvent with _$BlogPostEvent {
-
   /// Event to request blog posts.
   const factory BlogPostEvent.postsRequested() = PostsRequested;
 

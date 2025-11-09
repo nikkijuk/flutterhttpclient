@@ -6,7 +6,6 @@ part 'post_api_service.chopper.dart';
 @ChopperApi(baseUrl: '/posts')
 /// API service for blog posts.
 abstract class PostApiService extends ChopperService {
-
   /// Fetches a list of blog posts.
   @GET()
   Future<Response<List<BlogPost>>> getPosts();
@@ -24,7 +23,7 @@ abstract class PostApiService extends ChopperService {
   /// Create an instance of PostApiService.
   static PostApiService create() {
     final client = ChopperClient(
-      baseUrl: Uri.parse ('https://jsonplaceholder.typicode.com'),
+      baseUrl: Uri.parse('https://jsonplaceholder.typicode.com'),
       services: [
         _$PostApiService(),
       ],

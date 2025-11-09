@@ -7,7 +7,6 @@ import 'package:posts/src/bloc/blog_post_state.dart';
 
 /// Bloc responsible for handling blog post events and states
 class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
-
   /// Creates a [BlogPostBloc] with the given [BlogPostRepository].
   BlogPostBloc(
     this._blogPostRepository,
@@ -35,5 +34,4 @@ class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
   ) async {
     emit(BlogPostState.loadedPosts(event.posts));
   }
-
 }

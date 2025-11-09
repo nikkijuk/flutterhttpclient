@@ -6,7 +6,6 @@ part 'blog_post_state.freezed.dart';
 @freezed
 /// States for BlogPostBloc.
 abstract class BlogPostState with _$BlogPostState {
-
   /// Initial state before any action has taken place.
   const factory BlogPostState.initial() = Initial;
 

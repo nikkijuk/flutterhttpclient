@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 /// Card to contain information of single [BlogPost].
 class BlogPostCard extends StatelessWidget {
-
   /// Create a BlogPostCard widget.
   const BlogPostCard(this._post, {super.key});
 

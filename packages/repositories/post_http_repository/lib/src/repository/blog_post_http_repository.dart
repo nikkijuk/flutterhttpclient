@@ -1,10 +1,8 @@
-
 import 'package:blog_domain/blog_domain.dart';
 import 'package:post_api_service/post_api_service.dart';
 
 /// Repository interface for blog posts.
 final class BlogPostHttpRepository implements BlogPostRepository {
-
   /// Create BlogPostHttpRepository instance from [postApiService].
   BlogPostHttpRepository({
     required this.postApiService,
@@ -23,7 +21,6 @@ final class BlogPostHttpRepository implements BlogPostRepository {
   @override
   Future<BlogPost> fetchBlogPostById(int id) {
     return postApiService.getPost(id).then((response) => response.body!);
-
   }
 
   /// Creates a new blog post.
