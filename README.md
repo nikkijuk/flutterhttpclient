@@ -205,14 +205,27 @@ very_good create dart_package post_api_service --description "post http api"
 very_good create dart_package blog_domain --description "blog domain" 
 ```
 
-# ci/cd
+## model generation
+
+- model is part of domain
+- model is immutable data class
+- model is generated using freezed package
+- code generation using build_runner
+- json serialization using json_serializable package
+
+## ci/cd
 
 github actions
 
 - located at ".github" directory
 - created for each directory as in template
-- needs to be moved from "/apps/clientapp" to root and adjusted
+- needs to be copied from "/apps/clientapp" to root and adjusted
 - main.yaml renamed to clientapp.yaml
+- path adjusted to find sources
+- rules relaxed and made explicitly (defaults overridden)
 
+at the end checked that they run 
+
+- https://github.com/nikkijuk/flutterhttpclient/actions
 
 
