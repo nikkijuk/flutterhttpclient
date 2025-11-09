@@ -64,14 +64,22 @@ endpoints
 }
 ```
 
-## tech
+## packages used
 
 - dart
 - flutter
-- freezed
+- freezed_annotation
+- json_serializable
 - bloc
 - chopper
+- json_serializable_chopper_converter
 - get_it
+
+## generators
+
+- freezed
+- chopper_generator
+- build_runner
 
 ## tools
 
@@ -125,6 +133,7 @@ creating empty directories
 mkdir apps
 mkdir packages
 cd packages
+mkdir common
 mkdir features
 mkdir repositories
 mkdir domain
@@ -139,6 +148,7 @@ result
 ├── apps
 ├── LICENSE
 ├── packages
+│   ├── common
 │   ├── domain
 │   ├── features
 │   ├── repositories
@@ -216,6 +226,21 @@ very_good create dart_package utility --description "utility"
 - model is generated using freezed package
 - code generation using build_runner
 - json serialization using json_serializable package
+
+## api generation
+
+- packages/services/post_api_service/lib/src/service/post_api_service.dart
+
+- api is defined using chopper package
+- annotations define api endpoints and http methods
+- api implementation is generated using chopper generator
+- code generation using build_runner
+- json conversion using specialized chopper json converter
+- freezed annotations used for model generation contain json serialization info
+
+json conversion package
+
+- https://pub.dev/packages/json_serializable_chopper_converter
 
 ## ci/cd
 

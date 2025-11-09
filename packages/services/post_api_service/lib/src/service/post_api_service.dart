@@ -28,7 +28,7 @@ abstract class PostApiService extends ChopperService {
       services: [
         _$PostApiService(),
       ],
-      converter: JsonSerializableConverter({
+      converter: const JsonSerializableConverter({
         BlogPost: BlogPost.fromJson,
       }),
       interceptors: [HttpLoggingInterceptor()],

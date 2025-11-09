@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts/src/bloc/blog_post_bloc.dart';
 import 'package:posts/src/bloc/blog_post_event.dart';
 import 'package:posts/src/bloc/blog_post_state.dart';
+import 'package:posts/src/widget/blog_post_list.dart';
 
 /// View displaying blog posts using Bloc pattern.
 class BlogPostsView extends StatelessWidget {
@@ -31,9 +32,7 @@ class BlogPostsView extends StatelessWidget {
             LoadingPosts() => const Center(
               child: CircularProgressIndicator(),
             ),
-            LoadedPosts(:final posts) => Center(
-              child: Text('Loaded ${posts.length} posts'),
-            ),
+            LoadedPosts() => const BlogPostList (),
           },
         );
       },
