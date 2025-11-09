@@ -1,6 +1,8 @@
-import 'package:clientapp/counter/counter.dart';
+import 'package:blog_domain/blog_domain.dart';
+import 'package:clientapp/dependency_injection_config.dart';
 import 'package:clientapp/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:posts/posts.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +18,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: BlogPostsPage(getIt<BlogPostRepository>()),
     );
   }
 }

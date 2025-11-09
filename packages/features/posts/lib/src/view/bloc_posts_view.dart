@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts/src/bloc/blog_post_bloc.dart';
+import 'package:posts/src/bloc/blog_post_event.dart';
 import 'package:posts/src/bloc/blog_post_state.dart';
 
 /// View displaying blog posts using Bloc pattern.
@@ -17,10 +18,23 @@ class BlogPostsView extends StatelessWidget {
 
     return BlocBuilder<BlogPostBloc, BlogPostState>(
       builder: (context, state) {
-        return const Scaffold(
-          body: Center(
-            child: Text('Blog Posts View'),
-          ),
+        return Scaffold(
+          body: switch (state) {
+            Initial() => Center(
+              child: TextButton(
+                onPressed: () => context.read<BlogPostBloc>().add(
+                  const BlogPostEvent.postsRequested(),
+                ),
+                child: const Text('initial'),
+              ),
+            ),
+            LoadingPosts() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            LoadedPosts(:final posts) => Center(
+              child: Text('Loaded ${posts.length} posts'),
+            ),
+          },
         );
       },
     );
