@@ -96,13 +96,27 @@ endpoints
 
 ## repository
 
-- github.com (public)
+- hosted at github.com (public)
 - monorepo
-- dart workspace
-- n apps times m packages possible
-- melos as task runner
+- apps at /apps
+- packages at /packages
 
-## structure
+## workspace
+
+- dart workspace used
+- repository root is workspace root 
+- workspace root has name "_"
+- workspace includes /apps and /packages
+- each app and package has resolution:workspace at pubspec.yaml
+- workspaces are required for melos 7.x
+
+## task runner
+
+- melos as task runner
+- required definitions at melos.yaml
+- scripts at pubspec.yaml
+
+## directory structure
 
 creating empty directories
 
@@ -190,4 +204,15 @@ very_good create dart_package post_http_repository --description "post http repo
 very_good create dart_package post_api_service --description "post http api"
 very_good create dart_package blog_domain --description "blog domain" 
 ```
+
+# ci/cd
+
+github actions
+
+- located at ".github" directory
+- created for each directory as in template
+- needs to be moved from "/apps/clientapp" to root and adjusted
+- main.yaml renamed to clientapp.yaml
+
+
 

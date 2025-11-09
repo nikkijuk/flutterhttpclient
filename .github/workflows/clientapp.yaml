@@ -1,0 +1,39 @@
+name: clientapp
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  semantic-pull-request:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      # https://workflows.vgv.dev/docs/workflows/flutter_package
+      min_coverage: 80
+      flutter_version: "3.35.x"
+      flutter_channel: stable
+      format_line_length: 80
+      format_directories: "none" # defaults to "lib test"
+      coverage_excludes: "*.g.dart *.freezed.dart" # defaults to "" (none)
+      working_directory: apps/clientapp # defaults to "." (the top-level directory)
+
+# spell checker is commented out as typos are not highest prio now
+#
+#  spell-check:
+#    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1#
+#    with:
+#      includes: |
+#        **/*.md
+#      modified_files_only: false
