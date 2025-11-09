@@ -230,4 +230,24 @@ at the end checked that they run
 
 - https://github.com/nikkijuk/flutterhttpclient/actions
 
+## run configurations
 
+### android studio
+
+- run configurations are at ".idea/runConfigurations" directory
+- run configurations are xml files
+- run configurations are created when app is created using vgv cli
+- run configurations needs to be copied from "/apps/clientapp" to root and adjusted
+
+note: 
+
+- there seems be mechanism to overwrite existing run configurations in android studio
+- this seems to happen at checkout of branch
+- be careful not to overwrite existing run configurations
+
+### vscode
+
+- run configurations are at ".vscode/launch.json" file
+- run configurations are json file
+- run configurations are created when app is created using vgv cli
+- run configurations needs to be copied from "/apps/clientapp" to root and adjusted
