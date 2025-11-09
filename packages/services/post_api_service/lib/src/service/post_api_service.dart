@@ -1,5 +1,6 @@
 import 'package:blog_domain/blog_domain.dart';
 import 'package:chopper/chopper.dart';
+import 'package:json_serializable_chopper_converter/json_serializable_chopper_converter.dart';
 
 part 'post_api_service.chopper.dart';
 
@@ -27,8 +28,10 @@ abstract class PostApiService extends ChopperService {
       services: [
         _$PostApiService(),
       ],
-      //converter: BuiltValueConverter(),
-      //interceptors: [HttpLoggingInterceptor()],
+      converter: JsonSerializableConverter({
+        BlogPost: BlogPost.fromJson,
+      }),
+      interceptors: [HttpLoggingInterceptor()],
     );
     return _$PostApiService(client);
   }

@@ -204,6 +204,7 @@ very_good create dart_package -h
 very_good create dart_package post_http_repository --description "post http repository"
 very_good create dart_package post_api_service --description "post http api"
 very_good create dart_package blog_domain --description "blog domain" 
+very_good create dart_package utility --description "utility" 
 ```
 
 ## model generation

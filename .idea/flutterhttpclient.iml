@@ -21,6 +21,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/services/post_api_service/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/packages/services/post_api_service/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/packages/services/post_api_service/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common/utility/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common/utility/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common/utility/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

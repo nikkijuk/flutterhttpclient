@@ -9,6 +9,7 @@ environment:
 # glob support comes with dart 3.11.x
 workspace:
   - apps/clientapp
+  - packages/common/utility
   - packages/domain/blog_domain
   - packages/features/posts
   - packages/repositories/post_http_repository
