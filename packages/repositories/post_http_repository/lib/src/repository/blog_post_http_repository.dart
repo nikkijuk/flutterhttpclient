@@ -1,6 +1,5 @@
 
 import 'package:blog_domain/blog_domain.dart';
-import 'package:blog_domain/src/model/blog_post.dart';
 import 'package:post_api_service/post_api_service.dart';
 
 /// Repository interface for blog posts.

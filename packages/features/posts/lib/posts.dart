@@ -1,4 +1,4 @@
 /// posts feature
 library;
 
-export 'src/posts.dart';
+export 'src/view/blog_posts_page.dart';
