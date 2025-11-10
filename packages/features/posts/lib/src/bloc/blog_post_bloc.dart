@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:blog_domain/blog_domain.dart';
+import 'package:logging/logging.dart';
 import 'package:posts/src/bloc/blog_post_event.dart';
 import 'package:posts/src/bloc/blog_post_state.dart';
+
+final _log = Logger('BlogPostBloc');
 
 /// Bloc responsible for handling blog post events and states
 class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
@@ -23,9 +26,13 @@ class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
   ) async {
     emit(const BlogPostState.loadingPosts());
 
-    await _blogPostRepository.fetchBlogPosts().then(
-      (posts) => add(PostsReceived(posts)),
-    );
+    try {
+      final posts = await _blogPostRepository.fetchBlogPosts();
+      add(PostsReceived(posts));
+    } catch (e) {
+      _log.severe('Failed to load blog posts', e);
+      emit(const BlogPostState.initial());
+    }
   }
 
   Future<void> _postsReceived(
