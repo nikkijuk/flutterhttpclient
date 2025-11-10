@@ -19,13 +19,15 @@ final class BlogPostHttpRepository implements BlogPostRepository {
 
   /// Fetches a single blog post by its ID.
   @override
-  Future<BlogPost> fetchBlogPostById(int id) {
-    return postApiService.getPost(id).then((response) => response.body!);
+  Future<BlogPost> fetchBlogPostById(int id) async {
+    final post = await postApiService.getPost(id);
+    return post.bodyOrThrow;
   }
 
   /// Creates a new blog post.
   @override
-  Future<BlogPost> createBlogPost(BlogPost post) {
-    return postApiService.postPost(post).then((response) => response.body!);
+  Future<BlogPost> createBlogPost(BlogPost post) async {
+    final posts = await postApiService.postPost(post);
+    return posts.bodyOrThrow;
   }
 }
