@@ -29,7 +29,7 @@ class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
     try {
       final posts = await _blogPostRepository.fetchBlogPosts();
       add(PostsReceived(posts));
-    } catch (e) {
+    } on Exception catch (e) {
       _log.severe('Failed to load blog posts', e);
       emit(const BlogPostState.initial());
     }

@@ -50,10 +50,10 @@ extension BlogPostResourceX on BlogPostResource {
   /// Converts BlogPostResource to BlogPost domain model.
   BlogPost toModel() {
     return BlogPost(
-      id: this.id,
-      userId: this.userId,
-      title: this.title,
-      body: this.body,
+      id: id,
+      userId: userId,
+      title: title,
+      body: body,
     );
   }
 }
@@ -63,10 +63,10 @@ extension BlogPostX on BlogPost {
   /// Converts BlogPost domain model to BlogPostResource.
   BlogPostResource toResource() {
     return BlogPostResource(
-      id: this.id,
-      userId: this.userId,
-      title: this.title,
-      body: this.body,
+      id: id,
+      userId: userId,
+      title: title,
+      body: body,
     );
   }
 }
