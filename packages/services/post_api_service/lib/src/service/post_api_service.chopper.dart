@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 part of 'post_api_service.dart';
 
@@ -19,24 +19,24 @@ final class _$PostApiService extends PostApiService {
   final Type definitionType = PostApiService;
 
   @override
-  Future<Response<List<BlogPost>>> getPosts() {
+  Future<Response<List<BlogPostResource>>> getPosts() {
     final Uri $url = Uri.parse('/posts');
     final Request $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<BlogPost>, BlogPost>($request);
+    return client.send<List<BlogPostResource>, BlogPostResource>($request);
   }
 
   @override
-  Future<Response<BlogPost>> getPost(int id) {
+  Future<Response<BlogPostResource>> getPost(int id) {
     final Uri $url = Uri.parse('/posts/${id}');
     final Request $request = Request('GET', $url, client.baseUrl);
-    return client.send<BlogPost, BlogPost>($request);
+    return client.send<BlogPostResource, BlogPostResource>($request);
   }
 
   @override
-  Future<Response<BlogPost>> postPost(BlogPost body) {
+  Future<Response<BlogPostResource>> postPost(BlogPostResource body) {
     final Uri $url = Uri.parse('/posts');
     final $body = body;
     final Request $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<BlogPost, BlogPost>($request);
+    return client.send<BlogPostResource, BlogPostResource>($request);
   }
 }

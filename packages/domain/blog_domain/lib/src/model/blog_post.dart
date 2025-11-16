@@ -4,7 +4,7 @@ part 'blog_post.freezed.dart';
 part 'blog_post.g.dart';
 
 @Freezed()
-/// A data model representing a blog post.
+/// A domain representing a blog post.
 abstract class BlogPost with _$BlogPost {
   /// Creates a new [BlogPost] instance.
   const factory BlogPost({

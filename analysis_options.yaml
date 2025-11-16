@@ -1,0 +1,33 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+# Ignore generated files
+# https://github.com/rrousselGit/freezed/issues/38
+analyzer:
+  exclude:
+    - "**/*.g.dart" # for json_serializable
+    - "**/*.freezed.dart" # for freezed
+    - "**/*.mocks.dart" # for mockito
+    - "**/*_localizations.dart" # for flutter intl
+    - "**/*_bindings.dart" # for ffigen
+    - "packages/**/**/**/lib/src/l10n/*.dart"
+    - "packages/**/**/lib/src/l10n/*.dart"
+    - "apps/**/lib/l10n/*.dart"
+
+  errors:
+    document_ignores: ignore
+
+linter:
+  rules:
+
+    # We try to minimize and document apis and take care of package scope
+    # as packages should not expose too much private apis as public
+    # https://dart.dev/tools/linter-rules/public_member_api_docs
+    public_member_api_docs: false
+
+    # Formatter will take care of trailing commas
+    require_trailing_commas: false
+
+# Explicitly define formatting rules
+formatter:
+  page_width: 80
+  trailing_commas: automate # preserve

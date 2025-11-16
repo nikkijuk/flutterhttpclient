@@ -13,21 +13,60 @@ final class BlogPostHttpRepository implements BlogPostRepository {
 
   /// Fetches a list of blog posts.
   @override
-  Future<List<BlogPost>> fetchBlogPosts() {
-    return postApiService.getPosts().then((response) => response.body ?? []);
+  Future<List<BlogPost>> fetchBlogPosts() async {
+    final posts = await postApiService.getPosts();
+    final responseBody = posts.body;
+    if (responseBody == null) {
+      throw Exception('Failed to fetch blog posts');
+    }
+    return responseBody.map((post) => post.toModel()).toList();
   }
 
   /// Fetches a single blog post by its ID.
   @override
   Future<BlogPost> fetchBlogPostById(int id) async {
     final post = await postApiService.getPost(id);
-    return post.bodyOrThrow;
+    final responseBody = post.body;
+    if (responseBody == null) {
+      throw Exception('Blog post with id $id not found');
+    }
+    return responseBody.toModel();
   }
 
   /// Creates a new blog post.
   @override
   Future<BlogPost> createBlogPost(BlogPost post) async {
-    final posts = await postApiService.postPost(post);
-    return posts.bodyOrThrow;
+    final posts = await postApiService.postPost(post.toResource());
+    final responseBody = posts.body;
+    if (responseBody == null) {
+      throw Exception('Failed to create blog post');
+    }
+    return responseBody.toModel();
+  }
+}
+
+/// Extension method to transform BlogPostResource to BlogPost.
+extension BlogPostResourceX on BlogPostResource {
+  /// Converts BlogPostResource to BlogPost domain model.
+  BlogPost toModel() {
+    return BlogPost(
+      id: this.id,
+      userId: this.userId,
+      title: this.title,
+      body: this.body,
+    );
+  }
+}
+
+/// Extension method to transform BlogPost to BlogPostResource.
+extension BlogPostX on BlogPost {
+  /// Converts BlogPost domain model to BlogPostResource.
+  BlogPostResource toResource() {
+    return BlogPostResource(
+      id: this.id,
+      userId: this.userId,
+      title: this.title,
+      body: this.body,
+    );
   }
 }

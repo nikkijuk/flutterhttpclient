@@ -1,6 +1,6 @@
-import 'package:blog_domain/blog_domain.dart';
 import 'package:chopper/chopper.dart';
 import 'package:json_serializable_chopper_converter/json_serializable_chopper_converter.dart';
+import 'package:post_api_service/src/resource/blog_post_resource.dart';
 
 part 'post_api_service.chopper.dart';
 
@@ -9,16 +9,16 @@ part 'post_api_service.chopper.dart';
 abstract class PostApiService extends ChopperService {
   /// Fetches a list of blog posts.
   @GET()
-  Future<Response<List<BlogPost>>> getPosts();
+  Future<Response<List<BlogPostResource>>> getPosts();
 
   /// Fetches a single blog post by its ID.
   @GET(path: '/{id}')
-  Future<Response<BlogPost>> getPost(@Path('id') int id);
+  Future<Response<BlogPostResource>> getPost(@Path('id') int id);
 
   /// Creates a new blog post.
   @POST()
-  Future<Response<BlogPost>> postPost(
-    @Body() BlogPost body,
+  Future<Response<BlogPostResource>> postPost(
+    @Body() BlogPostResource body,
   );
 
   /// Create an instance of PostApiService.
@@ -29,7 +29,7 @@ abstract class PostApiService extends ChopperService {
         _$PostApiService(),
       ],
       converter: const JsonSerializableConverter({
-        BlogPost: BlogPost.fromJson,
+        BlogPostResource: BlogPostResource.fromJson,
       }),
       interceptors: [HttpLoggingInterceptor()],
     );
