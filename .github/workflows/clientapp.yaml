@@ -22,7 +22,7 @@ jobs:
     with:
       # https://workflows.vgv.dev/docs/workflows/flutter_package
       min_coverage: 50 # adjust as needed
-      flutter_version: "3.35.x"
+      flutter_version: "3.38.x"
       flutter_channel: stable
       format_line_length: 80
       format_directories: "none" # defaults to "lib test"
