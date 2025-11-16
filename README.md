@@ -227,34 +227,36 @@ very_good create dart_package utility --description "utility"
 
 Note that features only depend on domain.
 
-Repositories are used to implement domain repositories.
-
+Repositories are used to implement domain repositories with domain models.
 Repositories depend on services to access api's.
+Repositories transform data from services to domain models.
+
+Service has no dependencies to other packages layers as it defines own resource models.
+Services can be reused by multiple repositories and domains.
 
 Utility is a package for common code that can be used by any package.
 
 ```mermaid
 graph TD
-  blog_domain["blog_domain"]
-  style blog_domain stroke:#3696f6
-  clientapp["clientapp"]
-  style clientapp stroke:#e94cce
-  post_api_service["post_api_service"]
-  style post_api_service stroke:#8d4cb0
-  post_http_repository["post_http_repository"]
-  style post_http_repository stroke:#431166
-  posts["posts"]
-  style posts stroke:#c7f81a
-  utility["utility"]
-  style utility stroke:#736b17
-  clientapp --> blog_domain
-  clientapp --> post_api_service
-  clientapp --> post_http_repository
-  clientapp --> posts
-  post_api_service --> blog_domain
-  post_http_repository --> blog_domain
-  post_http_repository --> post_api_service
-  posts --> blog_domain
+    blog_domain["blog_domain"]
+    style blog_domain stroke:#3696f6
+    clientapp["clientapp"]
+    style clientapp stroke:#e94cce
+    post_api_service["post_api_service"]
+    style post_api_service stroke:#8d4cb0
+    post_http_repository["post_http_repository"]
+    style post_http_repository stroke:#431166
+    posts["posts"]
+    style posts stroke:#c7f81a
+    utility["utility"]
+    style utility stroke:#736b17
+    clientapp --> blog_domain
+    clientapp --> post_api_service
+    clientapp --> post_http_repository
+    clientapp --> posts
+    post_http_repository --> blog_domain
+    post_http_repository --> post_api_service
+    posts --> blog_domain
 ```
 
 diagram created with command
